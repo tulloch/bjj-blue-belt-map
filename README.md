@@ -1,26 +1,81 @@
 # Blue Belt Map — BJJ Position Decision Tree
 
-A mobile-first, choose-your-own-adventure-style guide to gi BJJ positions and the decision tree out of each one.
+A mobile-first, choose-your-own-adventure-style guide to gi BJJ positions and the decision tree out of each one — personalised for **Tulloch (50, 182cm, 66kg, Carlson Gracie UK)**.
 
 The point isn't to be a complete move catalogue — it's to answer the blue-belt question: **"I'm in this position. What's my next move based on what they're doing?"**
 
+## What's in here
+
+| File | Purpose |
+|------|---------|
+| `index.html` | Home / map page |
+| `your-profile.html` | Tulloch's profile, archetype, A-game vs avoid lists, Carlson context, reading list |
+| `quiz.html` + `quiz.js` | Drill quiz — randomly tests your decision-making |
+| `data.js` | Structured position/reaction data for the quiz (with `fit` metadata per response) |
+| `styles.css` | Shared styles (mobile-first, dark mode auto, GES brand palette) |
+| `manifest.json` + `icon-*.png` | PWA assets (add to home screen → behaves like an app) |
+| `mount.html`, `back-mount.html`, ... × 15 | Position pages (8 top + 7 bottom) |
+
+## How each position page is structured
+
+Same pattern on every page so your brain learns the shape:
+
+1. **Goal** — one sentence on what you're trying to do.
+2. **If they react…** — collapsible sections, each keyed to a specific opponent reaction, with 2–4 options.
+3. **Submissions to hunt anytime** — the high-percentage subs from this position.
+4. **If you lose the position** — the page(s) you'll end up on next.
+
+Every option is tagged with a fit indicator:
+- 🟢 **Green** = Tulloch's A-game (drill these obsessively)
+- 🟡 **Yellow** = situational, or know-to-defend (your Carlson coach will drill on you)
+- ⚪ **Grey** = avoid (wrong build / age / risk profile)
+
+## Verification status
+
+All "green" moves verified against:
+- **Saulo Ribeiro — *Jiu-Jitsu University*** (canonical BJJ text)
+- **UK / Carlson-aligned instructors** where direct video URLs were available (Roger Gracie, Lachlan Giles, Stephan Kesting, John Danaher, Lucas Lepri, Bernardo Faria, Mario Sperry)
+
+**Critical reframe from verification:** per Saulo, blue belt = **escapes**, not submissions. Profile page priority is reordered: escapes (Section 1) → subs (Section 2) → sweeps + passes (Section 3). This is also the right framing for Tulloch's frame at 66kg.
+
+## Curated YouTube links (direct video URLs on green moves)
+
+| Move | Source | URL |
+|------|--------|-----|
+| Cross-collar choke from mount | Roger Gracie himself (UK / Carlson) | `https://www.youtube.com/watch?v=ikxi5KRfKFI` |
+| Bow & arrow choke (back) | Lachlan Giles | `https://www.youtube.com/watch?v=yrUXIujVGTM` |
+| Triangle from closed guard | Lachlan Giles | `https://www.youtube.com/watch?v=K7xjhvWVzE4` |
+| Armbar from closed guard | John Danaher | `https://www.youtube.com/watch?v=pQ43Oy5k9yQ` |
+| Hip bump sweep + kimura | Lachlan Giles | `https://www.youtube.com/watch?v=vPNx9jWz1qc` |
+| Sit-up sweep | Lucas Lepri | `https://www.youtube.com/watch?v=0nhCtkPfz4Q` |
+| Kimura from side control | John Danaher | `https://www.youtube.com/watch?v=p-6lmaseoGI` |
+| Kimura from half guard top | Lachlan Giles (EBI 5 series) | `https://www.youtube.com/watch?v=mLLQBxG1ojo` |
+| Knee cut pass | Lucas Lepri | `https://www.youtube.com/watch?v=3IqCi1GXmOg` |
+| Mounted triangle | Bloom BJJ | `https://www.youtube.com/watch?v=FPpTdENZrcE` |
+| Upa from mount | Stephan Kesting (4 mistakes) | `https://www.youtube.com/watch?v=whaSmJBrKZY` |
+| Elbow-knee escape | Gordon Ryan | `https://www.youtube.com/watch?v=8T2SXB-4Fd8` |
+| Bridge & shrimp from side | ESG | `https://www.youtube.com/watch?v=_lE68blkbLo` |
+| Rear naked choke | Stephan Kesting (tightening) | `https://www.youtube.com/watch?v=KH6qCjgLXJA` |
+
+Yellow / grey moves still go to YouTube **search URLs** so you see fresh top results.
+
+## ⚠️ Coach check before drilling
+
+**This is opinion, cross-checked but not gospel.** Show the page for any move you're about to drill to your coach first. They have final say.
+
+This was built by Claude (LLM), not a black belt. The structure mirrors widely-taught gi BJJ at blue-belt level, and every green-fit rating was cross-referenced — but your coach knows you, the room, and the local rule set better than any external source.
+
 ## Local preview
 
-Just open `index.html` in any browser. No build step, no dependencies.
+Open `index.html` in any browser. No build step.
 
 ```powershell
-# from the workspace root
 Start-Process "G:\My Drive\Claude_Code\Personal\BJJ\blue-belt-cyoa\index.html"
 ```
 
-For mobile testing, copy the folder into Google Drive (it already lives there) and open `index.html` from the Drive app on your phone — or push to GitHub Pages (below) for a real public URL.
-
 ## Deploy to GitHub Pages
 
-One-time setup:
-
-1. **Create a new GitHub repo** (private or public — Pages works on both with a paid plan; free for public).
-   - Suggested name: `bjj-blue-belt-map` or similar.
+1. **Create a new GitHub repo** (free for public, paid for private).
 2. **Initialise git in this folder and push:**
    ```powershell
    cd "G:\My Drive\Claude_Code\Personal\BJJ\blue-belt-cyoa"
@@ -31,80 +86,34 @@ One-time setup:
    git remote add origin https://github.com/<your-username>/<repo-name>.git
    git push -u origin main
    ```
-3. **Enable Pages:** GitHub repo → Settings → Pages → Source: `Deploy from a branch` → Branch: `main` / `(root)` → Save.
-4. Wait ~30 seconds. Site URL will be `https://<your-username>.github.io/<repo-name>/`.
+3. **Enable Pages:** repo → Settings → Pages → Source: `Deploy from a branch` → Branch: `main` / `(root)` → Save.
+4. ~30 seconds later: site live at `https://<your-username>.github.io/<repo-name>/`.
 
-That URL is what you bookmark on your phone. Add it to your home screen (Safari/Chrome → Share → Add to Home Screen) and it behaves like an app.
+Bookmark on your phone, then Share → Add to Home Screen — behaves like an app (PWA manifest already configured).
 
-## Files
+## Editing
 
-```
-index.html              # Home / map page
-styles.css              # Shared styles (mobile-first, dark mode auto)
-README.md               # This file
+### To change a fit rating
 
-# Top positions
-mount.html
-back-mount.html
-side-control.html
-knee-on-belly.html
-north-south.html
-half-guard-top.html
-closed-guard-top.html
-open-guard-top.html
+Edit two places (keep them in sync):
+1. The position page HTML — change `class="option fit-green"` → `class="option fit-yellow"` (and update the emoji prefix on the option name)
+2. `data.js` — change `fit: "green"` → `fit: "yellow"` for the same response
 
-# Bottom positions
-closed-guard-bottom.html
-open-guard-bottom.html
-half-guard-bottom.html
-side-control-bottom.html
-mount-bottom.html
-back-mount-bottom.html
-turtle.html
-```
+### To swap a YouTube URL
 
-## How each page is structured
+Position page HTML only — find the `<a class="option fit-green" href="...">` line and update the `href`.
 
-Same pattern on every page so your brain learns the shape:
+### To add a new option to a position
 
-1. **Goal** — one sentence on what you're trying to do.
-2. **If they react…** — collapsible sections, each keyed to a specific opponent reaction, with 2-4 options inside.
-3. **Submissions to hunt anytime** — the high-percentage subs from this position.
-4. **If you lose the position** — the page(s) you'll end up on next, so you keep going.
-
-The point of the structure: every move in the site is **conditional on what the opponent is doing**. That's the blue-belt skill — not memorising more moves, but recognising the trigger.
-
-## YouTube videos
-
-Right now every ▶ link goes to a **YouTube search**, not a specific video. This was deliberate:
-
-- I (Claude) shouldn't fabricate specific YouTube URLs without verifying each one — too easy to link to a dead/wrong/inappropriate video.
-- Search URLs always show fresh top results — quality stays high over time.
-- You see a thumbnail row and pick what fits your style.
-
-**To upgrade to direct video URLs:**
-
-1. Pick 3-4 instructors you want to learn from. Good gi options: Roger Gracie, Bernardo Faria, Stephan Kesting (Grapplearts), Lachlan Giles, Chewjitsu, Andre Galvao.
-2. For each move on each page, find the instructor's video for that move.
-3. Replace `https://www.youtube.com/results?search_query=...` with `https://www.youtube.com/watch?v=<video-id>`.
-
-Or: ask Claude to do a curation pass — give it your instructor list and it'll WebSearch for the right videos and update the HTML in batch.
+Position page HTML + `data.js` (so the quiz picks it up).
 
 ## What's not here yet
 
 - **Standing / takedowns** — own world, would need its own page tree.
 - **No-gi variants** — moves overlap heavily but some (lapel chokes, gi grips) are gi-only.
-- **Leg locks beyond straight ankle** — IBJJF rules for blue belt limit these; can be added later.
+- **Leg locks beyond straight ankle** — IBJJF rules for blue belt limit these.
 - **Specific competition tactics** — this is a learning tool, not a comp prep tool.
-
-## Editing
-
-Each page is a self-contained HTML file with one shared stylesheet. To add a new option:
-
-1. Find the right `<details>` block in the relevant page (e.g. `mount.html`).
-2. Copy an existing `<a class="option">` block and change the name, description, and href.
-3. Reload the browser. No build step.
 
 ## Credits
 
-Decision tree built collaboratively by Tulloch + Claude (Sonnet 4.6 / Opus 4.7), 2026-05-03.
+Built collaboratively by Tulloch + Claude (Sonnet 4.6 / Opus 4.7), 2026-05-03.
