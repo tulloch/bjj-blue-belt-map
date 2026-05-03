@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#133C6C">
+<title>Drill — Blue Belt Map</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="index.html">← Map</a>
+  <span class="sep">›</span>
+  <span class="current">Drill</span>
+</nav>
+
+<main>
+
+  <!-- HOME / MODE PICKER -->
+  <section id="view-home">
+    <div class="hero">
+      <h1>Drill</h1>
+      <p class="tagline">Test your decision-making — picks the position you're weakest at first.</p>
+    </div>
+
+    <p id="activity-summary" class="quiz-activity"></p>
+
+    <div class="quiz-mode-buttons">
+      <button id="start-five-min" class="quiz-mode-btn primary">
+        <span class="quiz-mode-emoji">⚡</span>
+        <span class="quiz-mode-label">5-Minute Drill</span>
+        <span class="quiz-mode-desc">12 questions, weighted toward your weak positions</span>
+      </button>
+      <button id="start-all" class="quiz-mode-btn">
+        <span class="quiz-mode-emoji">🎲</span>
+        <span class="quiz-mode-label">Random 20</span>
+        <span class="quiz-mode-desc">Pure shuffle across every position</span>
+      </button>
+    </div>
+
+    <h2>Drill a specific position</h2>
+    <p class="quiz-help">Tap any cell to drill that position. Colour shows your accuracy.</p>
+    <div id="heat-map-grid" class="heat-map-grid"></div>
+
+    <div class="how-to" style="margin-top: 2rem;">
+      <h3>How to use</h3>
+      <ol>
+        <li><strong>5-Minute Drill</strong> is your daily go-to — it picks weak spots automatically.</li>
+        <li>Pick a specific position (tap a cell) when you want to grind one area.</li>
+        <li>Wrong answers show the highest-% response and link back to the full page.</li>
+        <li>Stats are saved on this device only — no account, no sync.</li>
+      </ol>
+    </div>
+
+    <button id="reset-stats" class="quiz-reset-btn">Reset all progress</button>
+  </section>
+
+  <!-- QUESTION -->
+  <section id="view-question" class="hidden">
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar"><div id="progress-bar-fill" class="quiz-progress-fill"></div></div>
+      <div id="progress-text" class="quiz-progress-text"></div>
+    </div>
+
+    <div class="quiz-scenario">
+      <div class="quiz-scenario-label">You're in</div>
+      <div id="scenario-position" class="quiz-scenario-position"></div>
+      <div class="quiz-scenario-label">They</div>
+      <div id="scenario-trigger" class="quiz-scenario-trigger"></div>
+    </div>
+
+    <div class="quiz-question-prompt">Pick the highest-% response:</div>
+
+    <div id="answer-options" class="quiz-answer-options"></div>
+
+    <div id="feedback-panel" class="quiz-feedback hidden">
+      <div id="feedback-verdict" class="quiz-feedback-verdict"></div>
+      <div class="quiz-feedback-label">Highest-% answer:</div>
+      <div id="feedback-answer" class="quiz-feedback-answer"></div>
+      <div id="feedback-desc" class="quiz-feedback-desc"></div>
+      <a id="feedback-link" class="quiz-feedback-link" href="#"></a>
+    </div>
+
+    <button id="next-btn" class="quiz-next-btn hidden">Next →</button>
+    <button id="back-to-home" class="quiz-back-btn">← Quit drill</button>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="view-results" class="hidden">
+    <div class="hero">
+      <h1>Done</h1>
+      <p class="tagline">
+        <span id="results-score" class="quiz-results-score"></span>
+        <span class="quiz-results-pct">·</span>
+        <span id="results-pct" class="quiz-results-pct"></span>
+      </p>
+    </div>
+
+    <h2>Per position</h2>
+    <div id="results-breakdown" class="results-breakdown"></div>
+
+    <h2>Review these</h2>
+    <div id="results-wrong"></div>
+
+    <div class="quiz-results-actions">
+      <button id="again-btn" class="quiz-mode-btn primary">Drill again</button>
+      <button id="home-from-results" class="quiz-mode-btn">Back to drill home</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="data.js"></script>
+<script src="quiz.js"></script>
+</body>
+</html>
